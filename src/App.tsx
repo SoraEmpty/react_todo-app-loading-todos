@@ -12,7 +12,9 @@ import { Header } from './components/Header';
 export const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
-  const [notificationError, setNotificationError] = useState<string | null>(null);
+  const [notificationError, setNotificationError] = useState<string | null>(
+    null,
+  );
 
   useEffect(() => {
     getTodos()
@@ -46,11 +48,13 @@ export const App: React.FC = () => {
       <h1 className="todoapp__title">todos</h1>
 
       <div className="todoapp__content">
-    <Header />
-    <TodoList
-    visibleTodos={visibleTodos}
-    setTodos={setTodos}
-    todos={todos}/>
+        <Header />
+
+        <TodoList
+          visibleTodos={visibleTodos}
+          setTodos={setTodos}
+          todos={todos}
+        />
 
         {/* Hide the footer if there are no todos */}
         {todos.length > 0 && (
@@ -65,9 +69,10 @@ export const App: React.FC = () => {
 
       {/* DON'T use conditional rendering to hide the notification */}
       {/* Add the 'hidden' class to hide the message smoothly */}
-        <OurErrors
+      <OurErrors
         notificationError={notificationError}
-        setNotificationError={setNotificationError}/>
+        setNotificationError={setNotificationError}
+      />
     </div>
   );
 };
