@@ -29,19 +29,17 @@ export const App: React.FC = () => {
     return <UserWarning />;
   }
 
-  const visibleTodos = todos.filter(todo => {
-    if (filter === 'all') {
+const visibleTodos = todos.filter(todo => {
+  switch (filter) {
+    case 'active':
+      return !todo.completed;
+    case 'completed':
+      return todo.completed;
+    default:
       return true;
-    }
+  }
+});
 
-    if (filter === 'active' && todo.completed === false) {
-      return true;
-    } else if (filter === 'completed' && todo.completed === true) {
-      return true;
-    } else {
-      return false;
-    }
-  });
 
   return (
     <div className="todoapp">
