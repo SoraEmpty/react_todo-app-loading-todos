@@ -5,7 +5,7 @@ import { UserWarning } from './UserWarning';
 import { getTodos, USER_ID } from './api/todos';
 import { Todo } from './types/Todo';
 import { Footer } from './components/Footer';
-import { OurErrors } from './components/OurErrors';
+import { OurErrors } from './components/ourErrors';
 import { TodoList } from './components/TodoList';
 import { Header } from './components/Header';
 
@@ -29,17 +29,16 @@ export const App: React.FC = () => {
     return <UserWarning />;
   }
 
-const visibleTodos = todos.filter(todo => {
-  switch (filter) {
-    case 'active':
-      return !todo.completed;
-    case 'completed':
-      return todo.completed;
-    default:
-      return true;
-  }
-});
-
+  const visibleTodos = todos.filter(todo => {
+    switch (filter) {
+      case 'active':
+        return !todo.completed;
+      case 'completed':
+        return todo.completed;
+      default:
+        return true;
+    }
+  });
 
   return (
     <div className="todoapp">
